@@ -75,6 +75,24 @@ namespace MorseCodeTranslator
             {'Ü', "..--"}
         };
 
+        public static Dictionary<string, char> _morseToText = new Dictionary<string, char>();
+        // We could copy the other Dictionary and flip ther keys and values but there is an easier way...
+
+        // using a static constructor, which is called first and run once(because of being static)
+        static Translator()
+        {
+            // looping through the values
+            // KeyValuePair is a Genereic type and macth the Dictionary being looped through
+            foreach (KeyValuePair<char, string> code in _textToMorse)
+            {
+                // adding the mapping, passing in code.Value because that is the key
+                // assign it the to value of the key
+                _morseToText[code.Value] = code.Key;
+                
+
+            }
+        }
+
         public static string ToMorse(string input)
         {
             // list of all the morse code, codes/ input.Llength so we do not have to resize it.
